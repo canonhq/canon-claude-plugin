@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "canon-claude-plugin",
+  "description": "Canon — Spec-driven development, automated. Verify code against specs, track coverage, and maintain living documentation.",
+  "owner": {
+    "name": "Gerner Ventures",
+    "email": "support@canonhq.co"
+  },
+  "plugins": [
+    {
+      "name": "canon",
+      "description": "AI-native spec documentation — verify code against specs, track coverage, maintain living docs. Powered by Canon.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Gerner Ventures"
+      },
+      "source": "./plugins/canon",
+      "category": "development",
+      "homepage": "https://github.com/canonhq/canon-claude-plugin"
+    }
+  ]
+}
