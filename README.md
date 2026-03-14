@@ -5,7 +5,7 @@ AI-native spec documentation — verify code against specs, track coverage, main
 ## Installation
 
 ```
-/plugin marketplace add canonhq/canon
+/plugin marketplace add canonhq/canon-claude-plugin
 /plugin install canon
 ```
 

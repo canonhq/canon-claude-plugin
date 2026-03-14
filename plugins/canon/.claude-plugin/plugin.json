@@ -5,7 +5,7 @@
   "author": {
     "name": "Gerner Ventures"
   },
-  "repository": "https://github.com/canonhq/canon",
+  "repository": "https://github.com/canonhq/canon-claude-plugin",
   "license": "MIT",
   "mcpServers": {
     "canon": {
