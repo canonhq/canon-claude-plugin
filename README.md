@@ -1,59 +1,39 @@
 # Canon Plugin for Claude Code
 
-Spec-driven development, automated. Verify code against specs, track coverage, and maintain living documentation — all from within Claude Code.
-
-**[Website](https://canonhq.co)** · **[Documentation](https://canonhq.co/docs)** · **[Getting Started](https://canonhq.co/docs/getting-started/)**
+AI-native spec documentation — verify code against specs, track coverage, maintain living docs.
 
 ## Installation
 
 ```
-/plugin marketplace add canonhq/canon-claude-plugin
+/plugin marketplace add canonhq/canon
 /plugin install canon
 ```
 
-Requires [Claude Code](https://claude.com/claude-code) and Python 3.12+ (for the MCP server, installed automatically via `uvx`).
+## Commands
 
-## Skills
-
-| Skill | Description |
-|-------|-------------|
-| `/canon:context` | Load relevant spec context for your current task |
-| `/canon:task` | Pick up a spec task, implement acceptance criteria, mark done |
+| Command | Description |
+|---------|-------------|
+| `/canon:context` | Load spec context for your current task |
+| `/canon:task` | Pick up a task, implement ACs, mark done |
 | `/canon:verify` | Verify code against spec acceptance criteria |
 | `/canon:new` | Create a new spec from template |
-| `/canon:plan` | Spec-driven implementation planning |
-| `/canon:review` | Detect drift between code and documentation |
-| `/canon:status` | Spec coverage dashboard |
-| `/canon:update` | Sync spec statuses from code evidence |
-| `/canon:audit` | Full spec maintenance — status sync, drift detection, coverage |
+| `/canon:review` | Review changes against all documentation |
+| `/canon:status` | Show spec coverage dashboard |
+| `/canon:plan` | Spec-driven planning workflow |
+| `/canon:update` | Update spec statuses from code evidence |
 
 ## How It Works
 
-Canon treats documentation as living programs. You write structured specs with acceptance criteria, and Canon's agents keep everything in sync as you build.
+Canon treats documentation as living programs. Specs define requirements with structured acceptance criteria. The plugin helps you:
 
 1. **Stay in context** — automatically surfaces relevant specs when you're working
-2. **Verify implementation** — checks your code against spec acceptance criteria and marks them realized
+2. **Verify implementation** — checks code against spec ACs, marks them realized
 3. **Track progress** — coverage dashboard shows what's done and what's left
 4. **Keep docs current** — detects drift between code and documentation
 
-Learn more about the concepts behind Canon: [Living Specs](https://canonhq.co/docs/concepts/living-specs/), [Spec Coverage](https://canonhq.co/docs/concepts/spec-coverage/), [Delta Tracking](https://canonhq.co/docs/concepts/delta-tracking/).
-
-## MCP Server
-
-The plugin includes a Canon [MCP server](https://canonhq.co/docs/reference/mcp-tools/) that gives Claude structured access to your specs:
-
-- **search** — hybrid search across specs
-- **get_spec** / **get_section** — read parsed spec data
-- **create_spec** — create new specs from templates
-- **update_section_status** — update section statuses
-- **add_realization** — link code evidence to acceptance criteria
-- **sync_spec_status** — bulk status updates in one commit
-
-All skills work without MCP using local file operations. MCP adds semantic search, write-back to GitHub, and org-wide coverage metrics.
-
 ## Spec Format
 
-Specs live in `docs/specs/*.md` as structured markdown with YAML frontmatter. See the [Spec Format Reference](https://canonhq.co/docs/reference/spec-format/) and [Writing Specs Guide](https://canonhq.co/docs/guides/writing-specs/) for full details.
+Specs live in `docs/specs/*.md` with YAML frontmatter:
 
 ```yaml
 ---
@@ -80,9 +60,21 @@ Sections use numbered headings with acceptance criteria:
 <!-- canon:realized-in:PR#42 file:src/auth.py:10-25 -->
 ```
 
+## MCP Server
+
+The plugin bundles a Canon MCP server that provides:
+- `search` — hybrid search across specs
+- `get_spec` / `get_section` — read parsed spec data
+- `create_spec` — create new specs from templates
+- `update_section_status` — update section statuses
+- `add_realization` — link code evidence to ACs
+- `sync_spec_status` — bulk updates in one commit
+
+All commands work without MCP using local file operations. MCP adds semantic search, write-back to GitHub, and org-wide coverage metrics.
+
 ## Configuration
 
-The plugin reads `CANON.yaml` from your repo root. See the [Configuration Reference](https://canonhq.co/docs/reference/canon-yaml/) for all options.
+The plugin reads `CANON.yaml` from your repo root:
 
 ```yaml
 specs:
@@ -95,15 +87,4 @@ agents:
   doc_updates: true
 ```
 
-Run `canon setup` to initialize a new repo, or follow the [Quickstart Guide](https://canonhq.co/docs/getting-started/quickstart/).
-
-## Resources
-
-- [Documentation](https://canonhq.co/docs) — full reference, guides, and concepts
-- [CLI Reference](https://canonhq.co/docs/reference/cli/) — `canon` CLI commands
-- [GitHub App Setup](https://canonhq.co/docs/guides/github-app-setup/) — automated PR analysis and doc updates
-- [Self-Hosting Guide](https://canonhq.co/docs/guides/self-hosting/) — deploy Canon on your own infrastructure
-
-## License
-
-MIT
+Run `canon setup` or use the GitHub Action to set up a new repo.
